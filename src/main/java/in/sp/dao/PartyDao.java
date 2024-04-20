@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import in.sp.entity.Party;
@@ -21,14 +22,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @Component
 public class PartyDao {
-
+	
+	@Autowired
 	private DataSource ds;
 	
 	public void createParty(Party party) throws SQLException{
 		Connection con = ds.getConnection();
-		PreparedStatement ps = con.prepareStatement("insert into parrty (party_id,party_enum_type_id) values (?,?)");
+		PreparedStatement ps = con.prepareStatement("insert into party (party_id,party_enum_type_id) values (?,?)");
+		ps.setString(1, party.getPartyId());
 		ps.setString(1, party.getPartyEnumTypeId());
-		ps.setString(1, party.getparty_enum_type_id);
 		
 		int ex = ps.executeUpdate();
 				if(ex>0) {
