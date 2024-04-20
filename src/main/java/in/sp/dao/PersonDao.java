@@ -5,8 +5,10 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import in.sp.entity.Person;
+import org.springframework.stereotype.Component;
 
+import in.sp.entity.Person;
+@Component
 public class PersonDao {
 
 	private DataSource ds;
